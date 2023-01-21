@@ -1,9 +1,13 @@
 import React, { useState } from "react";
 
-const QuizQuestions = ({ quiz }) => {
+const QuizQuestions = ({ quiz, setData }) => {
   const { question, correctAnswer, id, options } = quiz;
 
   const [selectAnswer, setSelectAnswer] = useState("");
+
+  const [correction, setCorrection] = useState(0);
+  const [wrongAnswer, setWrongAnswer] = useState(0);
+
   const handleQuesOption = (event) => {
     const selectOption = event.target.value;
     setSelectAnswer(selectOption);
@@ -12,9 +16,13 @@ const QuizQuestions = ({ quiz }) => {
   const handleJustify = () => {
     if (selectAnswer === correctAnswer) {
       alert("Correct Answer!!");
+      setCorrection(correction + 1);
     } else {
       alert("Wrong Answer!!");
+      setWrongAnswer(correction + 1);
     }
+
+    setData(correction + 1);
   };
   return (
     <div>
@@ -44,6 +52,10 @@ const QuizQuestions = ({ quiz }) => {
           >
             Justify Answer
           </button>
+        </div>
+        <div>
+          <p>Right Answer:{correction}</p>
+          <p>Wrong Answer:{wrongAnswer}</p>
         </div>
       </div>
     </div>
