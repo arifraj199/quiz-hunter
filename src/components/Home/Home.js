@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { useLoaderData, useNavigate } from 'react-router-dom';
 import HomepageBanner from '../HomepageBanner/HomepageBanner';
 import Topics from '../Topics/Topics';
 
@@ -8,6 +8,11 @@ const Home = () => {
     const topics = useLoaderData();
     // console.log(topics.data);
     const topicsItem = topics.data;
+    const navigate = useNavigate();
+    const handleNavigate = (id)=>{
+        // console.log(id);
+        navigate(`/quiz/${id}`);
+    }
     return (
         <div>
             <HomepageBanner></HomepageBanner>
@@ -16,6 +21,7 @@ const Home = () => {
                     topicsItem.map(topic=><Topics
                         key={topic.id}
                         topic={topic}
+                        handleNavigate={handleNavigate}
                     ></Topics>)
                 }
             </div>

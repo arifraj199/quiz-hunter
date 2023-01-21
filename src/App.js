@@ -1,43 +1,52 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import './App.css';
-import Blog from './components/Blog/Blog';
-import Home from './components/Home/Home';
-import PageError from './components/PageError/PageError';
-import Statistics from './components/Statistics/Statistics';
-import Topics from './components/Topics/Topics';
-import Main from './layouts/Main';
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import "./App.css";
+import About from "./components/About/About";
+import Blog from "./components/Blog/Blog";
+import Home from "./components/Home/Home";
+import PageError from "./components/PageError/PageError";
+import Quiz from "./components/Quiz/Quiz";
+import Statistics from "./components/Statistics/Statistics";
+
+import Main from "./layouts/Main";
 
 function App() {
-  const router=createBrowserRouter([
+  const router = createBrowserRouter([
     {
-      path:'/',
-      element:<Main></Main>,
-      children:[
+      path: "/",
+      element: <Main></Main>,
+      children: [
         {
-          path:'/',
-          loader:()=>fetch('https://openapi.programming-hero.com/api/quiz'),
-          element:<Home></Home>
+          path: "/",
+          loader: () => fetch("https://openapi.programming-hero.com/api/quiz"),
+          element: <Home></Home>,
         },
         {
-          path:'topics',
-          
-          element:<Topics></Topics>
+          path: "/quiz/:quizId",
+          loader: ({ params }) =>
+            fetch(
+              `https://openapi.programming-hero.com/api/quiz/${params.quizId}`
+            ),
+          element: <Quiz></Quiz>,
         },
         {
-          path:'statistics',
-          element:<Statistics></Statistics>
+          path: "statistics",
+          element: <Statistics></Statistics>,
         },
         {
-          path:'blog',
-          element:<Blog></Blog>
-        }
-      ]
+          path: "about",
+          element: <About></About>,
+        },
+        {
+          path: "blog",
+          element: <Blog></Blog>,
+        },
+      ],
     },
     {
-      path:'*',
-      element:<PageError></PageError>
-    }
-  ])
+      path: "*",
+      element: <PageError></PageError>,
+    },
+  ]);
   return (
     <div className="App">
       <RouterProvider router={router}></RouterProvider>

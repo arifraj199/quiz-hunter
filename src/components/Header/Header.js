@@ -14,14 +14,15 @@ const Header = () => {
         <Link className="mr-4 " to="/">
           Home
         </Link>
-        <Link className="mr-4 " to="/topics">
-          Topics
-        </Link>
+        
         <Link className="mr-4 " to="/statistics">
           Statistics
         </Link>
         <Link className="mr-4 " to="/blog">
           Blog
+        </Link>
+        <Link className="mr-4 " to="/about">
+          About
         </Link>
       </nav>
     </div>
