@@ -5,7 +5,7 @@ const Header = () => {
   return (
     <div className="flex justify-between items-center px-12 py-4 bg-orange-100">
       <div>
-        <h1 className="text-2xl font-bold">
+        <h1 className="text-3xl font-extrabold">
           <span className="text-red-600">Quiz</span>{" "}
           <span className="text-blue-900">Hunter</span>
         </h1>
