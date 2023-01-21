@@ -10,8 +10,9 @@ const QuizQuestions = ({ quiz }) => {
         <h1 className="text-blue-800 font-semibold text-xl">{question}</h1>
         <div className="grid grid-cols-2 mt-4">
           {options.map((option, idx) => (
-            <QuizQuesOptions key={idx} option={option}></QuizQuesOptions>
+            <QuizQuesOptions key={idx} correctAnswer={correctAnswer} option={option}></QuizQuesOptions>
           ))}
+          
         </div>
       </div>
     </div>
