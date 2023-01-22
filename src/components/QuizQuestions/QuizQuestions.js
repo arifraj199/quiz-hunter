@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import { EyeIcon } from "@heroicons/react/24/solid";
 
 const QuizQuestions = ({ quiz, setData }) => {
   const { question, correctAnswer, id, options } = quiz;
+  console.log(correctAnswer);
 
   const [selectAnswer, setSelectAnswer] = useState("");
 
@@ -11,6 +13,10 @@ const QuizQuestions = ({ quiz, setData }) => {
   const handleQuesOption = (event) => {
     const selectOption = event.target.value;
     setSelectAnswer(selectOption);
+  };
+
+  const handleCorrectAnswer = (correctAnswer) => {
+    alert(correctAnswer);
   };
 
   const handleJustify = () => {
@@ -27,7 +33,12 @@ const QuizQuestions = ({ quiz, setData }) => {
   return (
     <div>
       <div className="border-2  border-orange-500 rounded-md my-5 p-8 mx-4">
-        <h1 className="text-blue-800 font-semibold text-xl">{question}</h1>
+        <div className="flex justify-between">
+          <h1 className="text-blue-800 font-semibold text-xl">{question}</h1>
+          <button onClick={() => handleCorrectAnswer(correctAnswer)}>
+            <EyeIcon className="h-6 w-6 text-blue-500" />
+          </button>
+        </div>
         <div className="grid grid-cols-2 mt-4">
           {options.map((option) => (
             <div key={id}>
